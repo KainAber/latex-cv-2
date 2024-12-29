@@ -2,9 +2,15 @@ from pathlib import Path
 
 import yaml
 
-from src.io_utils import (compile_tex, create_img_folder, get_latest_file,
-                          open_pdf, read_template, save_icons,
-                          update_and_save_photo)
+from src.io_utils import (
+    compile_tex,
+    create_img_folder,
+    get_latest_file,
+    open_pdf,
+    read_template,
+    save_icons,
+    update_and_save_photo,
+)
 from src.latex_cv import clean_unused_tags, fill_template
 
 
