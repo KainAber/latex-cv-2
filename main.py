@@ -62,8 +62,11 @@ def run_engine(input_folder_path: Path, output_folder_path: Path) -> None:
 
 
 if __name__ == "__main__":
+    # Get project root path
+    project_root_folder_path = Path(__file__).parent
+
     # Read the main config
-    with open("config.yml", "r") as f:
+    with open(project_root_folder_path / "config.yml", "r") as f:
         config = yaml.safe_load(f)
 
     # Extract input and output paths
@@ -71,7 +74,6 @@ if __name__ == "__main__":
     output_folder = config["output_folder"]
 
     # Construct absolute input and output paths
-    project_root_folder_path = Path(__file__).parent
     input_path = (project_root_folder_path / input_folder).resolve()
     output_path = (project_root_folder_path / output_folder).resolve()
 
