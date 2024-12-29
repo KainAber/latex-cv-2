@@ -1,0 +1,270 @@
+\documentclass[10pt]{article}
+
+%Basics
+
+\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,xcolor,tikz,graphicx,calc}
+
+%Language and fonts
+
+% <language>
+\usepackage[%
+	english% language
+]{babel}
+% </language>
+\usepackage[utf8]{inputenc}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+\usepackage{amssymb}
+%\usepackage{fontspec} %toggles helvetica and avenir
+
+%colors
+% <colors>
+% <accent>
+\newcommand{\htmlaccent}{%
+	DD1111% accent
+}
+\definecolor{accent}{HTML}{\htmlaccent}
+% </accent>
+% <second>
+\newcommand{\htmlsecond}{%
+	999999% second
+}
+\definecolor{second}{HTML}{\htmlsecond}
+% </second>
+% </colors>
+
+%macros
+
+\usepackage{pgfmath} % For mathematical operations
+
+% Define the default multiplier
+\newcommand{\multiplier}{4}
+
+% Define the macro
+\newcommand{\symbolscale}[1]{%
+    \pgfmathsetmacro{\value}{round(#1 * \multiplier)}% Multiply by the multiplier and round to nearest integer
+    \pgfmathtruncatemacro{\valueint}{\value}% Truncate to ensure an integer
+    % Initialize the counter loop
+    \newcount\counter
+    \counter=1
+    \loop
+        \ifnum\counter>\valueint
+            $\circ$%
+        \else
+            $\bullet$%
+        \fi
+        \advance\counter by 1 % Increment counter
+    \ifnum\counter<\numexpr\multiplier+1\relax
+    \repeat
+}
+
+
+%misc
+
+\pagestyle{empty}
+\usepackage[margin=1in]{geometry}
+\usepackage{makecell}
+\setlist[itemize]{leftmargin=1em
+	, itemsep=0pt
+	, topsep=0pt
+	}
+\setlength{\parindent}{0pt}
+\renewcommand{\labelitemi}{$\cdot$}
+\newcommand{\bul}{\mathrel{\bullet}}
+\newcommand{\cir}{\mathrel{\circ}}
+
+
+\begin{document}
+	% <personal info>
+	\colorbox{white}{%
+	\parbox[t]{\textwidth-4cm}{%
+			$\blacksquare \color{accent}{\blacksquare} \color{second}{\blacksquare} \color{black}{\blacksquare}$
+			% <name>
+			\hfill {\Huge \fontfamily{qbk} \textbf{%
+				name% name
+			}}
+			% </name>
+		\begin{flushright}
+			\color{second}{%
+			% <address>
+				address% address
+			\
+			\includegraphics[width=10pt]{img/_%
+			\htmlsecond%
+			_address.png}
+			\\
+			\vspace{.3em}
+			% </address>
+			% <email>
+			\newcommand{\email}{%
+				email% email
+			}
+			\href{mailto:\email}{\email%
+			\
+			\includegraphics[width=10pt]{img/_%
+			\htmlsecond%
+			_email.png}}
+			\\
+			\vspace{.3em}
+			% </email>
+			% <phone>
+				1312% phone
+			\
+			\includegraphics[width=10pt]{img/_%
+			\htmlsecond%
+			_phone.png}
+			\\
+			\vspace{.3em}
+			% </phone>
+			% <github>
+			\newcommand{\github}{%
+				github% github
+			}
+			\href{https://github.com/\github}{GitHub: \github%
+			\
+			\includegraphics[width=10pt]{img/_%
+			\htmlsecond%
+			_github.png}}
+			\\
+			\vspace{.3em}
+			% </github>
+			% <linkedin>
+			\newcommand{\linkedin}{%
+				/in/linkedin% linkedin
+			}
+			\href{https://www.linkedin.com\linkedin/}{\includegraphics[width=10pt]{img/_%
+			\htmlsecond%
+			_linkedin.png}}
+			% </linkedin>
+			}
+		\end{flushright}
+	}
+	}
+	\hfill%
+	\colorbox{white}{%
+	\parbox[t]{4cm}{%
+
+		\vspace{-20.74 pt}%
+		% <photo>
+		\includegraphics[height=3.7cm]{%
+			img/foto_dario_1_2_500KB% photo
+		}
+		% </photo>
+	}
+	}
+	% </personal info>
+
+	\vspace{5em}
+
+	% <vita>
+	% <vita section>
+	% <title>
+	{\LARGE \fontfamily{qbk}\selectfont \textbf{%
+		vita section% title
+	}}
+	\nopagebreak[4]
+
+	\
+
+	% </title>
+	% <contents>
+	\nopagebreak[4]
+	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}l}
+		% <vita item>
+		\textcolor{second}{%
+		% <start date>
+			start date% start date
+		% </start date>
+		% <end date>
+			\space $\cdot$ %
+			end date% end date
+		% </end date>
+		}%
+		&%
+		% <title>
+		\textbf{%
+			title% title
+		}
+		% </title>
+		% <grade>
+		$\cdot$ \textit{%
+			grade% grade
+		}
+		% </grade>
+		% <organisation>
+		$\cdot$ %
+			organisation% organisation
+		% </organisation>
+		% <thesis>
+		\\
+		& \textit{%
+			thesis% thesis
+		}
+		% </thesis>
+		% <supervisors>
+		\\
+		&%
+			supervisors% supervisors
+		% </supervisors>
+		% <description>
+		% <item>
+		\\
+		&%
+			descr item% item
+		% </item>
+		% </description>
+		\\
+		\\
+		% </vita item>
+	\end{tabular}
+	% </contents>
+
+	\vspace{1em}
+
+	% </vita section>
+	% </vita>
+	% <qualities>
+	% <title>
+	{\LARGE \fontfamily{qbk}\selectfont \textbf{%
+		quality% title
+	}}
+	\nopagebreak[4]
+
+	\
+
+	% </title>
+	% <contents>
+	\nopagebreak[4]
+	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}l}
+		% <quality section>
+		\textcolor{second}{%
+		% <section name>
+			section% section name
+		% </section name>
+		}
+		% <items>
+		&%
+		% <level>
+		\symbolscale{%
+			0.5% level
+		}%
+		% </level>
+		\ \
+		% <quality>
+			quality% quality
+		% </quality>
+		\\
+		% </items>
+		\\
+		% </quality section>
+	\end{tabular}
+	% </contents>
+
+	\vspace{1em}
+
+	% </qualities>
+
+
+
+
+\end{document}

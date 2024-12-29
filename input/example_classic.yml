@@ -1,0 +1,65 @@
+template: classic
+
+personal info:
+    name: Shawn Stick
+    photo: pic.png
+    address: Main Street 5, 1337 Place-to-be
+    email: shawn.stick@emailprovider.com
+    phone: 12345678
+    linkedin: /in/sticksh
+    github: ShawnTheStick
+    about me: |
+        People consider me flat but are still drawn to me
+
+vita:
+    - vita section:
+        title: Career
+        contents:
+            vita item:
+                -   title: Some role
+                    start date: 01 / 2024
+                    end date: 12 / 2024
+                    organisation: Some company
+                    description:
+                        - item: Doing stuff
+                        - item: Doing even more stuff
+                -   title: Some other role
+                    start date: 01 / 2023
+                    end date: 12 / 2023
+                    organisation: Some different company
+                    description:
+                        - item: Not doing a whole lot of stuff
+    - vita section:
+        title: Education
+        contents:
+            vita item:
+                -   title: PhD
+                    start date: 12 / 2022
+                    grade: summa cum laude
+                    thesis: How to train a dragon
+                    supervisors: Prof. Stickman
+                    organisation: Some Uni
+
+qualities:
+    -   title: Skills
+        contents:
+            quality section:
+            -   section name: Soft Skills
+                items:
+                    - quality : Party Planning
+                      level: 0.6
+                    - quality: Listening
+                      level: 0.75
+            -   section name: Hard Skills
+                items:
+                    - quality: Hard Party Planning
+                      level: 0.6
+                    - quality: Programming
+                      level: 1
+
+colors:
+    second: 999999
+    accent: DD1111
+    icons: 999999
+
+language: english
