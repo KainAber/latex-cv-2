@@ -1,8 +1,8 @@
-template: classic
+template: modern
 
 personal info:
     name: Shawn Stick
-    photo: pic.png
+    photo: shawn.png
     address: Main Street 5, 1337 Place-to-be
     email: shawn.stick@emailprovider.com
     phone: 12345678
@@ -21,14 +21,16 @@ vita:
                     end date: 12 / 2024
                     organisation: Some company
                     description:
-                        - item: Doing stuff
-                        - item: Doing even more stuff
+                        description items:
+                            - item: Doing stuff
+                            - item: Doing even more stuff
                 -   title: Some other role
                     start date: 01 / 2023
                     end date: 12 / 2023
                     organisation: Some different company
                     description:
-                        - item: Not doing a whole lot of stuff
+                        description items:
+                            - item: Not doing a whole lot of stuff
     - vita section:
         title: Education
         contents:
@@ -39,6 +41,10 @@ vita:
                     thesis: How to train a dragon
                     supervisors: Prof. Stickman
                     organisation: Some Uni
+                    description:
+                        description items:
+                            - item: Slaying at research
+                            - item: Not slaying dragons
 
 qualities:
     -   title: Skills
@@ -46,20 +52,34 @@ qualities:
             quality section:
             -   section name: Soft Skills
                 items:
-                    - quality : Party Planning
+                    - quality : Party Plannin
                       level: 0.6
                     - quality: Listening
                       level: 0.75
             -   section name: Hard Skills
                 items:
-                    - quality: Hard Party Planning
+                    - quality: Hard Party Plannin
                       level: 0.6
                     - quality: Programming
                       level: 1
-
+ 
 colors:
-    second: 999999
-    accent: DD1111
-    icons: 999999
+    second: "00ADB5"
+    accent: "999999"
+    icons: "00ADB5"
+    left side fill: "222831"
+    left side accent: "00ADB5"
+    left side text: "EEEEEE"
+    right side fill: "EEEEEE"
+    right side accent: "00ADB5"
+    right side text: "222831"
+    right side text 2: "00ADB5"
+    
+geometry:
+    left side ratio: .33
+    margins: 1.5em
+    left side text padding: 1em
+    right side text padding: 1em
+    photo border: 3pt
 
 language: english

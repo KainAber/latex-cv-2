@@ -31,6 +31,12 @@
 }
 \definecolor{second}{HTML}{\htmlsecond}
 % </second>
+% <icons>
+\newcommand{\htmlicons}{%
+	222222% icons
+}
+\definecolor{icons}{HTML}{\htmlicons}
+% </icons>
 % </colors>
 
 %macros
@@ -90,7 +96,7 @@
 				address% address
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlsecond%
+			\htmlicons%
 			_address.png}
 			\\
 			\vspace{.3em}
@@ -102,7 +108,7 @@
 			\href{mailto:\email}{\email%
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlsecond%
+			\htmlicons%
 			_email.png}}
 			\\
 			\vspace{.3em}
@@ -111,7 +117,7 @@
 				1312% phone
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlsecond%
+			\htmlicons%
 			_phone.png}
 			\\
 			\vspace{.3em}
@@ -123,7 +129,7 @@
 			\href{https://github.com/\github}{GitHub: \github%
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlsecond%
+			\htmlicons%
 			_github.png}}
 			\\
 			\vspace{.3em}
@@ -133,7 +139,7 @@
 				/in/linkedin% linkedin
 			}
 			\href{https://www.linkedin.com\linkedin/}{\includegraphics[width=10pt]{img/_%
-			\htmlsecond%
+			\htmlicons%
 			_linkedin.png}}
 			% </linkedin>
 			}
@@ -169,7 +175,7 @@
 	% </title>
 	% <contents>
 	\nopagebreak[4]
-	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}l}
+	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{12cm}}
 		% <vita item>
 		\textcolor{second}{%
 		% <start date>
@@ -207,11 +213,17 @@
 			supervisors% supervisors
 		% </supervisors>
 		% <description>
-		% <item>
 		\\
 		&%
+		\vspace{-0.5em}
+		\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]
+		% <description items>
+		% <item>
+		\item%
 			descr item% item
 		% </item>
+		% </description items>
+		\end{itemize}
 		% </description>
 		\\
 		\\
