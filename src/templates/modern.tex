@@ -73,71 +73,39 @@
 % </aboutme>
 % </personal info>
 
+% Define color pallette
+% <colors>
+% <primary>
+\newcommand{\htmlprimary}{%
+	FFFFFF% primary
+}
+% </primary>
+% <secondary>
+\newcommand{\htmlsecondary}{%
+	999999% secondary
+}
+% </secondary>
+% <accent>
+\newcommand{\htmlaccent}{%
+	222222% accent
+}
+% </accent>
+% </colors>
+
+
 %% Colors
 %%% For 2 color mode, set rightsideaccent = leftsideaccent
 %%% For 1 color mode, set leftsideaccent = 000000 and rightsideaccent = leftsidefill
 % Define standard color pallette
-\definecolor{rightsidefill}{HTML}{FFFFFF} % Fill color of right side
-\definecolor{leftsidefill}{HTML}{4F9EAA} % Fill color of left side
-\definecolor{leftsideaccent}{HTML}{000000} % Fill color of photo border and progress bar
-\definecolor{rightsideaccent}{HTML}{4F9EAA} % Text color of headings on right side
-\definecolor{rightsidetext}{HTML}{000000} % Text color on right side
-\definecolor{rightsidetext2}{HTML}{888888} % Text color for dates and locations on right side
-\definecolor{leftsidetext}{HTML}{FFFFFF} % Text color on left side
+\definecolor{rightsidefill}{HTML}{\htmlprimary} % Fill color of right side
+\definecolor{leftsidefill}{HTML}{\htmlsecondary} % Fill color of left side
+\definecolor{leftsideaccent}{HTML}{\htmlaccent} % Fill color of photo border and progress bar
+\definecolor{rightsideaccent}{HTML}{\htmlaccent} % Text color of headings on right side
+\definecolor{rightsidetext}{HTML}{\htmlsecondary} % Text color on right side
+\definecolor{rightsidetext2}{HTML}{\htmlaccent} % Text color for dates and locations on right side
+\definecolor{leftsidetext}{HTML}{\htmlprimary} % Text color on left side
 %%% Accent color combinations
 %%% 4F9EAA 802651
-
-% Redefine color pallette
-% <colors>
-% <right side fill>
-\newcommand{\htmlrightsidefill}{%
-	FFFFFF% right side fill
-}
-\definecolor{rightsidefill}{HTML}{\htmlrightsidefill}
-% </right side fill>
-% <left side fill>
-\newcommand{\htmlleftsidefill}{%
-	4F9EAA% left side fill
-}
-\definecolor{leftsidefill}{HTML}{\htmlleftsidefill}
-% </left side fill>
-% <left side accent>
-\newcommand{\htmlleftsideaccent}{%
-	000000% left side accent
-}
-\definecolor{leftsideaccent}{HTML}{\htmlleftsideaccent}
-% </left side accent>
-% <right side accent>
-\newcommand{\htmlrightsideaccent}{%
-	4F9EAA% right side accent
-}
-\definecolor{rightsideaccent}{HTML}{\htmlrightsideaccent}
-% </right side accent>
-% <right side text>
-\newcommand{\htmlrightsidetext}{%
-	000000% right side text
-}
-\definecolor{rightsidetext}{HTML}{\htmlrightsidetext}
-% </right side text>
-% <right side text 2>
-\newcommand{\htmlrightsidetexttwo}{%
-	888888% right side text 2
-}
-\definecolor{rightsidetext2}{HTML}{\htmlrightsidetexttwo}
-% </right side text 2>
-% <left side text>
-\newcommand{\htmlleftsidetext}{%
-	FFFFFF% left side text
-}
-\definecolor{leftsidetext}{HTML}{\htmlleftsidetext}
-% </left side text>
-% <icons>
-\newcommand{\htmlicons}{%
-	000000% icons
-}
-\definecolor{icons}{HTML}{\htmlicons}
-% </icons>
-% </colors>
 
 
 %% Dimensions
@@ -306,7 +274,7 @@
     	%     ADDRESS     %
     	%%%%%%%%%%%%%%%%%%%
 
-    	\includegraphics[height=2em]{img/_\htmlicons _address.png}
+    	\includegraphics[height=2em]{img/_\htmlaccent _address.png}
 
 		\address
 
@@ -319,7 +287,7 @@
     	%%%%%%%%%%%%%%%%%
 
 		\href{mailto:\email}{%
-		\includegraphics[height=2em]{img/_\htmlicons _email.png}
+		\includegraphics[height=2em]{img/_\htmlaccent _email.png}
 		}
 
 		\href{mailto:\email}{\email}
@@ -332,7 +300,7 @@
     	%     PHONE     %
     	%%%%%%%%%%%%%%%%%
 
-		\includegraphics[height=2em]{img/_\htmlicons _phone.png}
+		\includegraphics[height=2em]{img/_\htmlaccent _phone.png}
 
 		\phone
 
@@ -345,7 +313,7 @@
     	%%%%%%%%%%%%%%%%%%%%
 
     	\href{https://www.linkedin.com\linkedin}{
-		\includegraphics[height=2em]{img/_\htmlicons _linkedin.png}
+		\includegraphics[height=2em]{img/_\htmlaccent _linkedin.png}
 		}
 
 		\href{https://www.linkedin.com\linkedin}{\linkedin}
@@ -359,7 +327,7 @@
     	%%%%%%%%%%%%%%%%%%
 
     	\href{https://www.github.com/\github}{
-		\includegraphics[height=2em]{img/_\htmlicons _github.png}
+		\includegraphics[height=2em]{img/_\htmlaccent _github.png}
 		}
 
 		\href{https://www.github.com/\github}{\github}

@@ -64,16 +64,9 @@ qualities:
                       level: 1
 
 colors:
-    second: "00ADB5"
-    accent: "999999"
-    icons: "00ADB5"
-    left side fill: "222831"
-    left side accent: "00ADB5"
-    left side text: "EEEEEE"
-    right side fill: "EEEEEE"
-    right side accent: "00ADB5"
-    right side text: "222831"
-    right side text 2: "00ADB5"
+    primary: "EEEEEE"
+    secondary: "222831"
+    accent: "00ADB5"
 
 geometry:
     left side ratio: .33

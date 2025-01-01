@@ -30,7 +30,7 @@ def run_engine(input_folder_path: Path, output_folder_path: Path) -> None:
     cfg = update_and_save_photo(cfg, input_folder_path, output_folder_path)
 
     # Extract icons color
-    icons_color = str(cfg["colors"]["icons"])
+    icons_color = str(cfg["colors"]["accent"])
 
     # Save icons
     save_icons(output_folder_path, icons_color)

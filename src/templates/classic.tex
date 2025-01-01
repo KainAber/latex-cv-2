@@ -19,25 +19,28 @@
 
 %colors
 % <colors>
+% <primary>
+\newcommand{\htmlprimary}{%
+	FFFFFF% primary
+}
+\definecolor{primary}{HTML}{\htmlprimary}
+% </primary>
+% <secondary>
+\newcommand{\htmlsecondary}{%
+	999999% secondary
+}
+\definecolor{secondary}{HTML}{\htmlsecondary}
+% </secondary>
 % <accent>
 \newcommand{\htmlaccent}{%
-	DD1111% accent
+	222222% accent
 }
 \definecolor{accent}{HTML}{\htmlaccent}
 % </accent>
-% <second>
-\newcommand{\htmlsecond}{%
-	999999% second
-}
-\definecolor{second}{HTML}{\htmlsecond}
-% </second>
-% <icons>
-\newcommand{\htmlicons}{%
-	222222% icons
-}
-\definecolor{icons}{HTML}{\htmlicons}
-% </icons>
 % </colors>
+
+\pagecolor{primary}
+\color{secondary}
 
 %macros
 
@@ -82,21 +85,20 @@
 
 \begin{document}
 	% <personal info>
-	\colorbox{white}{%
 	\parbox[t]{\textwidth-4cm}{%
-			$\blacksquare \color{accent}{\blacksquare} \color{second}{\blacksquare} \color{black}{\blacksquare}$
+			$\color{secondary}{\blacksquare} \color{accent}{\blacksquare} \color{gray}{\blacksquare} \color{secondary}{\blacksquare}$
 			% <name>
 			\hfill {\Huge \fontfamily{qbk} \textbf{%
 				name% name
 			}}
 			% </name>
 		\begin{flushright}
-			\color{second}{%
+			\color{accent}{%
 			% <address>
 				address% address
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlicons%
+			\htmlaccent%
 			_address.png}
 			\\
 			\vspace{.3em}
@@ -108,7 +110,7 @@
 			\href{mailto:\email}{\email%
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlicons%
+			\htmlaccent%
 			_email.png}}
 			\\
 			\vspace{.3em}
@@ -117,7 +119,7 @@
 				1312% phone
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlicons%
+			\htmlaccent%
 			_phone.png}
 			\\
 			\vspace{.3em}
@@ -129,7 +131,7 @@
 			\href{https://github.com/\github}{GitHub: \github%
 			\
 			\includegraphics[width=10pt]{img/_%
-			\htmlicons%
+			\htmlaccent%
 			_github.png}}
 			\\
 			\vspace{.3em}
@@ -139,24 +141,21 @@
 				/in/linkedin% linkedin
 			}
 			\href{https://www.linkedin.com\linkedin/}{\includegraphics[width=10pt]{img/_%
-			\htmlicons%
+			\htmlaccent%
 			_linkedin.png}}
 			% </linkedin>
 			}
 		\end{flushright}
 	}
-	}
 	\hfill%
-	\colorbox{white}{%
 	\parbox[t]{4cm}{%
 
 		\vspace{-20.74 pt}%
 		% <photo>
-		\includegraphics[height=3.7cm]{%
+		\ \includegraphics[height=3.7cm]{%
 			img/foto_dario_1_2_500KB% photo
 		}
 		% </photo>
-	}
 	}
 	% </personal info>
 
@@ -177,7 +176,7 @@
 	\nopagebreak[4]
 	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{12cm}}
 		% <vita item>
-		\textcolor{second}{%
+		\textcolor{accent}{%
 		% <start date>
 			start date% start date
 		% </start date>
@@ -249,7 +248,7 @@
 	\nopagebreak[4]
 	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}l}
 		% <quality section>
-		\textcolor{second}{%
+		\textcolor{accent}{%
 		% <section name>
 			section% section name
 		% </section name>

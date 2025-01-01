@@ -51,7 +51,7 @@ colors:
     second: "00ADB5"
     accent: "999999"
     icons: "00ADB5"
-    ,,,
+    ...
 
 geometry:
     left side ratio: .33
