@@ -48,10 +48,9 @@ qualities:
                       level: 0.75
             ...
 colors:
-    second: "00ADB5"
-    accent: "999999"
-    icons: "00ADB5"
-    ...
+    primary: "EEEEEE"
+    secondary: "222831"
+    accent: "00ADB5"
 
 geometry:
     left side ratio: .33
