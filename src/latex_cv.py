@@ -18,9 +18,6 @@ def fill_template(config: list | dict, template: str) -> str:
         # Call function for each key-value pair on the same string
         for k, v in config.items():
 
-            if k == "level":
-                print("")
-
             # Define pattern for splitting the template at tags
             pattern = rf"(.*?)^[ \t]*% <{k}>\n(.*?)^[ \t]*% </{k}>\n(.*)"
 
@@ -42,6 +39,10 @@ def fill_template(config: list | dict, template: str) -> str:
                 template_middle_match = re.match(
                     pattern, template_middle, re.MULTILINE | re.DOTALL
                 )
+
+                # Continue if no match
+                if not template_middle_match:
+                    continue
 
                 # Get split results
                 (
