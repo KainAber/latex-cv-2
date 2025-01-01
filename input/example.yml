@@ -62,7 +62,7 @@ qualities:
                       level: 0.6
                     - quality: Programming
                       level: 1
- 
+
 colors:
     second: "00ADB5"
     accent: "999999"
@@ -74,7 +74,7 @@ colors:
     right side accent: "00ADB5"
     right side text: "222831"
     right side text 2: "00ADB5"
-    
+
 geometry:
     left side ratio: .33
     margins: 1.5em

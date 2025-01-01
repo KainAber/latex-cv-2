@@ -5,7 +5,7 @@ This repository contains an alternative solution to GUI-based CV creation tools.
 The user specifies the contents of the CV using a YAML file. This file gets read by a Python script
 to manipulate a LaTeX template and afterwards the template gets compiled.
 
-Alternatively, if you cannot be bothered with Python and are somewhat familiar with LaTeX, the template `./src/CV_template.tex` could be used by itself.
+Alternatively, if you cannot be bothered with Python and are somewhat familiar with LaTeX, the template `src/CV_template.tex` could be used by itself.
 
 *The code in this repository builds upon the work done in [latex-cv](https://github.com/KainAber/latex-cv),
 making a tradeoff by increasing the complexity of the template and config while enhancing its flexibility to support additional templates.*
@@ -13,18 +13,13 @@ making a tradeoff by increasing the complexity of the template and config while 
 ## Example CV
 
 ```yaml
-template: classic
+template: modern
 
 personal info:
     name: Shawn Stick
-    photo: pic.png
+    photo: shawn.png
     address: Main Street 5, 1337 Place-to-be
-    email: shawn.stick@emailprovider.com
-    phone: 12345678
-    linkedin: /in/sticksh
-    github: ShawnTheStick
-    about me: |
-        People consider me flat but are still drawn to me
+    ...
 
 vita:
     - vita section:
@@ -36,24 +31,10 @@ vita:
                     end date: 12 / 2024
                     organisation: Some company
                     description:
-                        - item: Doing stuff
-                        - item: Doing even more stuff
-                -   title: Some other role
-                    start date: 01 / 2023
-                    end date: 12 / 2023
-                    organisation: Some different company
-                    description:
-                        - item: Not doing a whole lot of stuff
-    - vita section:
-        title: Education
-        contents:
-            vita item:
-                -   title: PhD
-                    start date: 12 / 2022
-                    grade: summa cum laude
-                    thesis: How to train a dragon
-                    supervisors: Prof. Stickman
-                    organisation: Some Uni
+                        description items:
+                            - item: Doing stuff
+                            - item: Doing even more stuff
+                ...
 
 qualities:
     -   title: Skills
@@ -61,32 +42,34 @@ qualities:
             quality section:
             -   section name: Soft Skills
                 items:
-                    - quality : Party Planning
+                    - quality : Party Plannin
                       level: 0.6
                     - quality: Listening
                       level: 0.75
-            -   section name: Hard Skills
-                items:
-                    - quality: Hard Party Planning
-                      level: 0.6
-                    - quality: Programming
-                      level: 1
-
+            ...
 colors:
-    second: 999999
-    accent: DD1111
-    icons: 999999
+    second: "00ADB5"
+    accent: "999999"
+    icons: "00ADB5"
+    ,,,
+
+geometry:
+    left side ratio: .33
+    ...
 
 language: english
-```
 
-<img src="./src/example_classic.png" style="width: 100%; height: auto; max-height: 700px">
+```
+<div align="center">
+<img src="src/templates/classic_example.png" style="height: auto; max-height: 700px">
+<img src="src/templates/modern_example.png" style="height: auto; max-height: 700px">
+</div>
 
 ## Overview of Repository
 
 ```shell
 ├── input                     # input folder containing base examples
-│   ├── example_classic.yaml    # YAML file for building an example CV (classic)
+│   ├── example.yaml            # YAML file for building an example CV
 │   └── pic.png                 # image needed for the example
 ├── src                       # folder containing source codes, LaTeX templates, etc
 │   ├── img                     # folder of icons embedded into the template
