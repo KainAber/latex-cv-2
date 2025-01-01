@@ -128,3 +128,4 @@ If you additionally create an alias in your shell configuration for the executio
   * [github](https://www.flaticon.com/free-icon/social_16021236) by [iconsimple](https://www.flaticon.com/authors/iconsimple)
   * [linkedin](https://www.flaticon.com/free-icon/linkedin_3536569) by [riajulislam](https://www.flaticon.com/authors/riajulislam)
   * [phone](https://www.flaticon.com/free-icon/call_16703465) by [meaicon](https://www.flaticon.com/authors/meaicon)
+* The `example.yaml` color scheme is from [colorhunt.co](https://colorhunt.co/palette/222831393e4600adb5eeeeee)
