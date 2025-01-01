@@ -51,7 +51,7 @@ def read_template(template_name: str) -> str:
 
 def save_icons(output_folder_path: Path, icons_color: str) -> None:
     # Construct img folder path
-    img_folder_path = Path(__file__).parent / "img"
+    img_folder_path = Path(__file__).parent / "templates" / "img"
 
     # Get the list of files in the input folder
     icon_file_paths = [f for f in img_folder_path.iterdir() if f.suffix == ".png"]
@@ -101,7 +101,7 @@ def create_img_folder(output_folder_path: Path) -> None:
 
     # Create folder
     if not img_folder_path.is_dir():
-        img_folder_path.mkdir()
+        img_folder_path.mkdir(parents=True)
 
 
 def update_and_save_photo(
@@ -111,19 +111,22 @@ def update_and_save_photo(
     photo_path_str = cfg["personal info"]["photo"]
 
     # Construct photo path
-    photo_path = input_folder_path / photo_path_str
+    photo_path = (input_folder_path / photo_path_str).resolve()
 
     # Extract name
     photo_file_name = Path(photo_path).name
 
+    # Clean photo file name
+    photo_file_name_clean = photo_file_name.replace(" ", "_")
+
     # Construct new photo path
-    new_photo_path = output_folder_path / "img" / photo_file_name
+    new_photo_path = output_folder_path / "img" / photo_file_name_clean
 
     # Copy file
     shutil.copy(photo_path, new_photo_path)
 
     # Update location in config
-    cfg["personal info"]["photo"] = new_photo_path.resolve()
+    cfg["personal info"]["photo"] = Path("img") / photo_file_name_clean
 
     return cfg
 
