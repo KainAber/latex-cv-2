@@ -13,7 +13,7 @@ making a tradeoff by increasing the complexity of the template and config while 
 ## Example CV
 
 ```yaml
-template: modern
+template: modern # options: modern, classic
 
 personal info:
     name: Shawn Stick
