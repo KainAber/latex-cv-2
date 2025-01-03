@@ -1,4 +1,4 @@
-template: modern
+template: modern # Options: modern, classic
 
 personal info:
     name: Shawn Stick
