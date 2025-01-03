@@ -47,6 +47,7 @@ qualities:
                     - quality: Listening
                       level: 0.75
             ...
+
 colors:
     primary: "EEEEEE"
     secondary: "222831"
