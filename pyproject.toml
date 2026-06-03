@@ -11,3 +11,6 @@ dependencies = [
 dev = [
     "ruff>=0.15.15",
 ]
+
+[tool.setuptools.package-data]
+latex_cv = ["**/*.png", "**/*.tex"]
