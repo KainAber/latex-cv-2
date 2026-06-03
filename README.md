@@ -61,8 +61,8 @@ language: english
 
 ```
 <div align="center">
-<img src="src/templates/classic_example.png" style="height: auto; max-height: 700px">
-<img src="src/templates/modern_example.png" style="height: auto; max-height: 700px">
+<img src="src/latex-cv/templates/classic_example.png" style="height: auto; max-height: 700px">
+<img src="src/latex-cv/templates/modern_example.png" style="height: auto; max-height: 700px">
 </div>
 
 ## Overview of Repository
@@ -87,20 +87,22 @@ language: english
 
 Make sure the following is installed on your machine:
 * LaTeX (incl. pdflatex and [latexmk](https://mg.readthedocs.io/latexmk.html))
-* Python (any version of Python 3 should suffice)
+* [uv](https://docs.astral.sh/uv/)
 
 If the above programs are installed, follow these steps:
 1. Clone this repository via
     ```shell
    git clone https://github.com/KainAber/latex-cv-2.git
     ```
-3. Optional: Configure a virtual environment for this project
-3. Navigate inside the repository and install the requirements
+3. Navigate inside the repository and set up the environment
     ```shell
     cd latex-cv
-    pip install -r requirements.txt
+    uv sync
     ```
 4. Run `main.py`
+    ```shell
+    uv run python -m src.latex_cv.main
+    ```
 
 This last step generates a `.tex` file and then calls `subprocess.run` to execute a `latexmk` command compiling that `.tex` file.
 
