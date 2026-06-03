@@ -17,7 +17,6 @@ def fill_template(config: list | dict, template: str) -> str:
     if isinstance(config, dict):
         # Call function for each key-value pair on the same string
         for k, v in config.items():
-
             # Define pattern for splitting the template at tags
             pattern = rf"(.*?)^[ \t]*% <{k}>\n(.*?)^[ \t]*% </{k}>\n(.*)"
 

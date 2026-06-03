@@ -2,7 +2,7 @@ from pathlib import Path
 
 import yaml
 
-from src.io_utils import (
+from .io_utils import (
     compile_tex,
     create_img_folder,
     get_latest_file,
@@ -11,14 +11,18 @@ from src.io_utils import (
     save_icons,
     update_and_save_photo,
 )
-from src.latex_cv import clean_unused_tags, fill_template
+from .latex_cv import clean_unused_tags, fill_template
 
 
 def run_engine(input_folder_path: Path, output_folder_path: Path) -> None:
-
     # Get latest config path
     cfg_path = get_latest_file(input_folder_path, ext=".yml")
 
+    # Run from path
+    run_latex_cv_from_cfg(cfg_path, output_folder_path)
+
+
+def run_latex_cv_from_cfg(cfg_path: Path, output_folder_path: Path) -> None:
     # Read config
     with open(cfg_path, "r") as f:
         cfg = yaml.safe_load(f)
@@ -27,7 +31,7 @@ def run_engine(input_folder_path: Path, output_folder_path: Path) -> None:
     create_img_folder(output_folder_path)
 
     # Update photo
-    cfg = update_and_save_photo(cfg, input_folder_path, output_folder_path)
+    cfg = update_and_save_photo(cfg, cfg_path.parent, output_folder_path)
 
     # Extract icons color
     icons_color = str(cfg["colors"]["accent"])
@@ -63,7 +67,7 @@ def run_engine(input_folder_path: Path, output_folder_path: Path) -> None:
 
 if __name__ == "__main__":
     # Get project root path
-    project_root_folder_path = Path(__file__).parent
+    project_root_folder_path = Path(__file__).parent.parent.parent
 
     # Read the main config
     with open(project_root_folder_path / "config.yml", "r") as f:
