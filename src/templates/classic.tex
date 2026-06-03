@@ -67,13 +67,42 @@
     \repeat
 }
 
+%geometry
+% <geometry>
+% <itemize right margin>
+\newcommand{\itemizerightmargin}{%
+	0em% itemize right margin
+}
+% </itemize right margin>
+% <left>
+\newcommand{\geoleft}{%
+	0cm% left
+}
+% </left>
+% <right>
+\newcommand{\georight}{%
+	0cm% right
+}
+% </right>
+% <top>
+\newcommand{\geotop}{%
+	0cm% top
+}
+% </top>
+% <bottom>
+\newcommand{\geobottom}{%
+	0cm% bottom
+}
+% </bottom>
+% </geometry>
 
 %misc
 
 \pagestyle{empty}
-\usepackage[margin=1in]{geometry}
+\usepackage[left=\geoleft, right=\georight, top=\geotop, bottom=\geobottom]{geometry}
 \usepackage{makecell}
 \setlist[itemize]{leftmargin=1em
+	, rightmargin=\itemizerightmargin
 	, itemsep=0pt
 	, topsep=0pt
 	}
@@ -153,7 +182,7 @@
 		\vspace{-20.74 pt}%
 		% <photo>
 		\ \includegraphics[height=3.7cm]{%
-			img/foto_dario_1_2_500KB% photo
+			../../example/shawn.png% photo
 		}
 		% </photo>
 	}
@@ -234,6 +263,9 @@
 
 	% </vita section>
 	% </vita>
+
+	\vspace{1em}
+
 	% <qualities>
 	% <title>
 	{\LARGE \fontfamily{qbk}\selectfont \textbf{%

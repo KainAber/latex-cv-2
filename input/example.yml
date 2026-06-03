@@ -74,5 +74,10 @@ geometry:
     left side text padding: 1em
     right side text padding: 1em
     photo border: 3pt
+    itemize right margin: 0em
+    left: 1.5cm
+    right: 0.5cm
+    top: 1.5cm
+    bottom: 0cm
 
 language: english
