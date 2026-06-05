@@ -2,7 +2,9 @@
 
 %Basics
 
-\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,xcolor,tikz,graphicx,calc}
+\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,tikz,graphicx,calc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
 
 %Language and fonts
 
@@ -198,7 +200,7 @@
 	}}
 	\nopagebreak[4]
 
-	\
+	\vspace{1em}
 
 	% </title>
 	% <contents>
@@ -244,7 +246,7 @@
 		\\
 		&%
 		\vspace{-0.5em}
-		\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]
+		\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=4pt]
 		% <description items>
 		% <item>
 		\item%
@@ -259,7 +261,7 @@
 	\end{tabular}
 	% </contents>
 
-	\vspace{1em}
+	%\vspace{1em}
 
 	% </vita section>
 	% </vita>
@@ -291,8 +293,8 @@
 		\symbolscale{%
 			0.5% level
 		}%
-		% </level>
 		\ \
+		% </level>
 		% <quality>
 			quality% quality
 		% </quality>
