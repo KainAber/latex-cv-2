@@ -51,7 +51,7 @@
 % Define the default multiplier
 \newcommand{\multiplier}{4}
 
-% Define the macro
+% Define the skill scale
 \newcommand{\symbolscale}[1]{%
     \pgfmathsetmacro{\value}{round(#1 * \multiplier)}% Multiply by the multiplier and round to nearest integer
     \pgfmathtruncatemacro{\valueint}{\value}% Truncate to ensure an integer
@@ -67,6 +67,14 @@
         \advance\counter by 1 % Increment counter
     \ifnum\counter<\numexpr\multiplier+1\relax
     \repeat
+}
+
+% Define the diff text highlights
+\newcommand{\removetext}[1]{%
+    \textcolor{BrickRed}{\sout{#1}}
+}
+\newcommand{\addtext}[1]{%
+    \textcolor{Green}{#1}
 }
 
 %geometry
