@@ -1,14 +1,11 @@
 import logging
 import shutil
 import subprocess  # nosec
-from pathlib import Path
 
+from pathlib import Path
 from PIL import Image
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -138,39 +135,40 @@ def compile_tex(tex_file_path: Path) -> None:
     # Get tex folder
     tex_folder_path = Path(tex_file_path).parent
 
-    # Log the compilation
-    logger.info(f"Compiling pdf to folder {tex_folder_path}")
+    # latexmkrc path
+    latexmkrc_path = Path(__file__).parent / ".latexmkrc"
 
     # Compile the tex file
     subprocess.run(
         [
             "latexmk",
-            "-quiet",
+            "-r", str(latexmkrc_path),
             "-pdf",
             f"-output-directory={str(tex_folder_path)}",
             f"{str(tex_file_path)}",
-        ]
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )  # nosec
 
     # Log the compilation
-    logger.info(f"Compiled pdf to folder {tex_folder_path}")
-
-    # Log cleanup
-    logger.info("Cleaning compilation directory")
+    logger.info(f"Compiled pdf from {tex_file_path}")
 
     # Cleaning up auxilliary files
     subprocess.run(
         [
             "latexmk",
-            "-quiet",
+            "-r", str(latexmkrc_path),
             "-c",
             f"-output-directory={str(tex_folder_path)}",
             f"{str(tex_file_path)}",
-        ]
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )  # nosec
 
     # Logging cleanup
-    logger.info("Finsihed cleanup")
+    logger.info("Finished cleanup of compilation directory")
 
 
 def open_pdf(cv_path: Path) -> None:
