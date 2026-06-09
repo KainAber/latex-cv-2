@@ -13,4 +13,4 @@ dev = [
 ]
 
 [tool.setuptools.package-data]
-latex_cv = ["**/*.png", "**/*.tex"]
+latex_cv = ["**/*.png", "**/*.tex", "**/.latexmkrc"]
