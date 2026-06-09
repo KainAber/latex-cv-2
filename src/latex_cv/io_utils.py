@@ -37,9 +37,12 @@ def get_latest_file(folder_path: Path, ext="") -> Path:
     return latest_file
 
 
-def read_template(template_name: str) -> str:
+def read_template(template_path: str) -> str:
+    # Add .tex suffix if available
+    template_path = template_path + ".tex" if not template_path.endswith(".tex") else template_path
+
     # Construct path to template
-    template_path = Path(__file__).parent / "templates" / (template_name + ".tex")
+    template_path = Path(__file__).parent / "templates" / Path(template_path)
 
     # Read template
     with open(template_path, "r") as f:
