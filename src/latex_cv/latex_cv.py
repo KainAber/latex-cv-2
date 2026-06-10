@@ -9,6 +9,7 @@ from .io import (
     read_template,
     save_icons,
     update_and_save_photo,
+    open_pdf
 )
 from .fill import clean_unused_tags, fill_template
 
@@ -40,9 +41,10 @@ def run_latex_yaml_from_cfg(cfg_path: Path, output_folder_path: Path) -> None:
 
     cfg = update_and_save_photo(cfg, cfg_path.parent, output_folder_path)
 
-    icons_color = str(cfg["colors"]["accent"])
+    icons_color = cfg.get("colors", dict({})).get("accent", "")
 
-    save_icons(output_folder_path, icons_color)
+    if icons_color:
+        save_icons(output_folder_path, icons_color)
 
     template_path = cfg["template"]
 
@@ -58,3 +60,5 @@ def run_latex_yaml_from_cfg(cfg_path: Path, output_folder_path: Path) -> None:
         f.write(template_filled_clean)
 
     compile_tex_and_clean_up(cv_output_path)
+
+    open_pdf(cv_output_path)

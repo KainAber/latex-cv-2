@@ -50,9 +50,11 @@ def fill_template(config: list | dict, template: str) -> str:
                     template_middle_after,
                 ) = template_middle_match.groups()
 
+                config_value_formatted = re.sub(r'\n+', '\n', str(v).strip("\n")).replace("\n", "\\\\\n")
+
                 # Replace middle
                 template_middle = (
-                    template_middle_before + str(v).strip("\n") + template_middle_after
+                    template_middle_before + config_value_formatted + template_middle_after
                 )
 
             else:
@@ -64,6 +66,9 @@ def fill_template(config: list | dict, template: str) -> str:
 
         # Return
         return template
+
+    if isinstance(config, str):
+        return config
 
 
 def clean_unused_tags(template: str) -> str:

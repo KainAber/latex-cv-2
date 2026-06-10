@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%																	%
+%					LaTeX COVER LETTER TEMPLATE						%
+%																	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PREAMBLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,xcolor}
+\usepackage[ngerman,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[official]{eurosym}
+\usepackage{units}
+
+% <info>
+% <sender address>
+\newcommand{\senderaddress}{%
+    sender address% sender address
+}
+% </sender address>
+
+% <company address>
+\newcommand{\recipientaddress}{%
+    company address% company address
+}
+% </company address>
+
+% <position>
+\newcommand{\position}{%
+    position% position
+}
+% </position>
+
+% <company>
+\newcommand{\company}{%
+    company% company
+}
+% </company>
+% </info>
+
+
+\usepackage[a4paper,
+            left=2.2cm,
+            right=2.2cm,
+            top=2cm,
+            bottom=2cm]{geometry}
+\setlength{\parindent}{0cm}
+\thispagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+	\begin{flushright}
+		{%
+		\footnotesize%
+		\senderaddress%
+		\\%
+		}
+	\end{flushright}
+
+	\vspace{\baselineskip}
+
+	\recipientaddress%
+
+	\vspace{2\baselineskip}
+
+    % <subject>
+    \textbf{%
+        subject% subject
+    }
+    % </subject>
+
+	\vspace{2\baselineskip}
+
+    % <body>
+
+	% <greeting>
+	    greeting% greeting
+	,
+	% </greeting>
+
+	\vspace{\baselineskip}
+
+	% Intro
+	% <intro>
+	% <paragraph>
+        intro par% paragraph
+    % </paragraph>
+
+	\vspace{2\baselineskip}
+	% </intro>
+
+	% <experience>
+	% <paragraph>
+        experience par% paragraph
+    % </paragraph>
+
+	\vspace{\baselineskip}
+	% </experience>
+
+	\vspace{\baselineskip}
+
+	% <motivation>
+	% <paragraph>
+        motivation par% paragraph
+	% </paragraph>
+
+	\vspace{\baselineskip}
+	% </motivation>
+
+	\vspace{\baselineskip}
+
+	% <salary expectation>
+        salary par% salary expectation
+
+	\vspace{2\baselineskip}
+	% </salary expectation>
+
+	% <close>
+        close% close
+
+	\vspace{\baselineskip}
+	% </close>
+	
+	% <salutation>
+	    salutation% salutation
+    % </salutation>
+
+    % </body>
+
+\end{document}

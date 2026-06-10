@@ -108,7 +108,10 @@ def update_and_save_photo(
     cfg: dict, input_folder_path: Path, output_folder_path: Path
 ) -> dict:
     # Extract photo path
-    photo_path_str = cfg["personal info"]["photo"]
+    photo_path_str = cfg.get("personal info", dict({})).get("photo", "")
+
+    if not photo_path_str:
+        return cfg
 
     # Construct photo path
     photo_path = (input_folder_path / photo_path_str).resolve()
