@@ -139,7 +139,7 @@ def compile_tex(tex_file_path: Path) -> None:
     latexmkrc_path = Path(__file__).parent / ".latexmkrc"
 
     # Compile the tex file
-    subprocess.run(
+    result = subprocess.run(
         [
             "latexmk",
             "-r", str(latexmkrc_path),
@@ -147,12 +147,18 @@ def compile_tex(tex_file_path: Path) -> None:
             f"-output-directory={str(tex_folder_path)}",
             f"{str(tex_file_path)}",
         ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
     )  # nosec
 
-    # Log the compilation
-    logger.info(f"Compiled pdf from {tex_file_path}")
+    std_out_indented = indent_lines(result.stdout, indent_size=35)
+    std_err_indented = indent_lines(result.stderr, indent_size=35)
+
+    if result.returncode != 0:
+        logger.warn(f"Error in compiling {tex_file_path}:\n{std_out_indented}\n{std_err_indented}")
+    else:
+        logger.info(f"Compiled pdf from {tex_file_path}")
 
     # Cleaning up auxilliary files
     subprocess.run(
@@ -170,6 +176,15 @@ def compile_tex(tex_file_path: Path) -> None:
     # Logging cleanup
     logger.info("Finished cleanup of compilation directory")
 
+
+def indent_lines(message: str, indent_size: int) -> str:
+    lines = message.splitlines()
+
+    lines_indented = [" " * indent_size + line for line in lines]
+
+    message_indented = "\n".join(lines_indented)
+
+    return message_indented
 
 def open_pdf(cv_path: Path) -> None:
     subprocess.run(
