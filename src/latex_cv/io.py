@@ -131,14 +131,45 @@ def update_and_save_photo(
     return cfg
 
 
-def compile_tex(tex_file_path: Path) -> None:
-    # Get tex folder
+def compile_tex_and_clean_up(tex_file_path: Path) -> None:
+    result = compile_tex(tex_file_path)
+
+    std_out_indented = indent_lines(result.stdout, indent_size=35)
+    std_err_indented = indent_lines(result.stderr, indent_size=35)
+
+    if result.returncode != 0:
+        logger.warn(f"Error in compiling {tex_file_path} with error code {result.returncode}:\n{std_out_indented}\n{std_err_indented}")
+    else:
+        logger.info(f"Compiled pdf from {tex_file_path}")
+
+        clean_up_tex_compilation(tex_file_path)
+
+
+def clean_up_tex_compilation(tex_file_path: Path) -> None:
     tex_folder_path = Path(tex_file_path).parent
 
-    # latexmkrc path
     latexmkrc_path = Path(__file__).parent / ".latexmkrc"
 
-    # Compile the tex file
+    subprocess.run(
+        [
+            "latexmk",
+            "-r", str(latexmkrc_path),
+            "-c",
+            f"-output-directory={str(tex_folder_path)}",
+            f"{str(tex_file_path)}",
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )  # nosec
+
+    logger.info("Finished cleanup of compilation directory")
+
+
+def compile_tex(tex_file_path: Path) -> subprocess.CompletedProcess:
+    tex_folder_path = Path(tex_file_path).parent
+
+    latexmkrc_path = Path(__file__).parent / ".latexmkrc"
+
     result = subprocess.run(
         [
             "latexmk",
@@ -152,29 +183,7 @@ def compile_tex(tex_file_path: Path) -> None:
         text=True
     )  # nosec
 
-    std_out_indented = indent_lines(result.stdout, indent_size=35)
-    std_err_indented = indent_lines(result.stderr, indent_size=35)
-
-    if result.returncode != 0:
-        logger.warn(f"Error in compiling {tex_file_path}:\n{std_out_indented}\n{std_err_indented}")
-    else:
-        logger.info(f"Compiled pdf from {tex_file_path}")
-
-    # Cleaning up auxilliary files
-    subprocess.run(
-        [
-            "latexmk",
-            "-r", str(latexmkrc_path),
-            "-c",
-            f"-output-directory={str(tex_folder_path)}",
-            f"{str(tex_file_path)}",
-        ],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )  # nosec
-
-    # Logging cleanup
-    logger.info("Finished cleanup of compilation directory")
+    return result
 
 
 def indent_lines(message: str, indent_size: int) -> str:
@@ -185,6 +194,7 @@ def indent_lines(message: str, indent_size: int) -> str:
     message_indented = "\n".join(lines_indented)
 
     return message_indented
+
 
 def open_pdf(cv_path: Path) -> None:
     subprocess.run(

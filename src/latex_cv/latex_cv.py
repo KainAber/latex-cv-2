@@ -3,7 +3,7 @@ from pathlib import Path
 import yaml
 
 from .io import (
-    compile_tex,
+    compile_tex_and_clean_up,
     create_img_folder,
     get_latest_file,
     read_template,
@@ -57,4 +57,4 @@ def run_latex_yaml_from_cfg(cfg_path: Path, output_folder_path: Path) -> None:
     with open(cv_output_path, "w") as f:
         f.write(template_filled_clean)
 
-    compile_tex(cv_output_path)
+    compile_tex_and_clean_up(cv_output_path)
