@@ -1,14 +1,11 @@
 import logging
 import shutil
 import subprocess  # nosec
-from pathlib import Path
 
+from pathlib import Path
 from PIL import Image
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -37,9 +34,12 @@ def get_latest_file(folder_path: Path, ext="") -> Path:
     return latest_file
 
 
-def read_template(template_name: str) -> str:
+def read_template(template_path: str) -> str:
+    # Add .tex suffix if available
+    template_path = template_path + ".tex" if not template_path.endswith(".tex") else template_path
+
     # Construct path to template
-    template_path = Path(__file__).parent / "templates" / (template_name + ".tex")
+    template_path = Path(__file__).parent / "templates" / Path(template_path)
 
     # Read template
     with open(template_path, "r") as f:
@@ -108,7 +108,10 @@ def update_and_save_photo(
     cfg: dict, input_folder_path: Path, output_folder_path: Path
 ) -> dict:
     # Extract photo path
-    photo_path_str = cfg["personal info"]["photo"]
+    photo_path_str = cfg.get("personal info", dict({})).get("photo", "")
+
+    if not photo_path_str:
+        return cfg
 
     # Construct photo path
     photo_path = (input_folder_path / photo_path_str).resolve()
@@ -131,43 +134,69 @@ def update_and_save_photo(
     return cfg
 
 
-def compile_tex(tex_file_path: Path) -> None:
-    # Get tex folder
+def compile_tex_and_clean_up(tex_file_path: Path) -> None:
+    result = compile_tex(tex_file_path)
+
+    std_out_indented = indent_lines(result.stdout, indent_size=35)
+    std_err_indented = indent_lines(result.stderr, indent_size=35)
+
+    if result.returncode != 0:
+        logger.warn(f"Error in compiling {tex_file_path} with error code {result.returncode}:\n{std_out_indented}\n{std_err_indented}")
+    else:
+        logger.info(f"Compiled pdf from {tex_file_path}")
+
+        clean_up_tex_compilation(tex_file_path)
+
+
+def clean_up_tex_compilation(tex_file_path: Path) -> None:
     tex_folder_path = Path(tex_file_path).parent
 
-    # Log the compilation
-    logger.info(f"Compiling pdf to folder {tex_folder_path}")
+    latexmkrc_path = Path(__file__).parent / ".latexmkrc"
 
-    # Compile the tex file
     subprocess.run(
         [
             "latexmk",
-            "-quiet",
-            "-pdf",
-            f"-output-directory={str(tex_folder_path)}",
-            f"{str(tex_file_path)}",
-        ]
-    )  # nosec
-
-    # Log the compilation
-    logger.info(f"Compiled pdf to folder {tex_folder_path}")
-
-    # Log cleanup
-    logger.info("Cleaning compilation directory")
-
-    # Cleaning up auxilliary files
-    subprocess.run(
-        [
-            "latexmk",
-            "-quiet",
+            "-r", str(latexmkrc_path),
             "-c",
             f"-output-directory={str(tex_folder_path)}",
             f"{str(tex_file_path)}",
-        ]
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
     )  # nosec
 
-    # Logging cleanup
-    logger.info("Finsihed cleanup")
+    logger.info("Finished cleanup of compilation directory")
+
+
+def compile_tex(tex_file_path: Path) -> subprocess.CompletedProcess:
+    tex_folder_path = Path(tex_file_path).parent
+
+    latexmkrc_path = Path(__file__).parent / ".latexmkrc"
+
+    result = subprocess.run(
+        [
+            "latexmk",
+            "-r", str(latexmkrc_path),
+            "-pdf",
+            f"-output-directory={str(tex_folder_path)}",
+            f"{str(tex_file_path)}",
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )  # nosec
+
+    return result
+
+
+def indent_lines(message: str, indent_size: int) -> str:
+    lines = message.splitlines()
+
+    lines_indented = [" " * indent_size + line for line in lines]
+
+    message_indented = "\n".join(lines_indented)
+
+    return message_indented
 
 
 def open_pdf(cv_path: Path) -> None:

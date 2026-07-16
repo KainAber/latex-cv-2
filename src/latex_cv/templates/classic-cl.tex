@@ -1,0 +1,151 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%																	%
+%					LaTeX COVER LETTER TEMPLATE						%
+%																	%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% PREAMBLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper]{article}
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,xcolor}
+\usepackage[normalem]{ulem}
+\usepackage[ngerman,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[official]{eurosym}
+\usepackage{units}
+
+% <info>
+% <sender address>
+\newcommand{\senderaddress}{%
+    sender address% sender address
+}
+% </sender address>
+
+% <company address>
+\newcommand{\recipientaddress}{%
+    company address% company address
+}
+% </company address>
+
+% <position>
+\newcommand{\position}{%
+    position% position
+}
+% </position>
+
+% <company>
+\newcommand{\company}{%
+    company% company
+}
+% </company>
+% </info>
+
+
+\usepackage[a4paper,
+            left=2cm,
+            right=2cm,
+            top=1.5cm,
+            bottom=1.5cm]{geometry}
+\setlength{\parindent}{0cm}
+\thispagestyle{empty}
+
+
+% Define the diff text highlights
+\newcommand{\removetext}[1]{%
+    \textcolor{BrickRed}{\sout{#1}}%
+}
+\newcommand{\addtext}[1]{%
+    \textcolor{Green}{\textbf{#1}}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+	\begin{flushright}
+		{%
+		\footnotesize%
+		\senderaddress%
+		\\%
+		}
+	\end{flushright}
+
+	\vspace{\baselineskip}
+
+    % <body>
+
+    % <subject>
+    \textbf{%
+        subject% subject
+    }
+    % </subject>
+
+	\vspace{2\baselineskip}
+
+	% <greeting>
+	    greeting% greeting
+	,
+	% </greeting>
+
+	\vspace{\baselineskip}
+
+	% Intro
+	% <intro>
+	% <paragraph>
+        intro par% paragraph
+    % </paragraph>
+
+	\vspace{2\baselineskip}
+	% </intro>
+
+	% <experience intro>
+	% <paragraph>
+        experience par% paragraph
+    % </paragraph>
+
+    \vspace{\baselineskip}
+	% </experience intro>
+
+	% <experience examples>
+	% <paragraph>
+        experience par% paragraph
+    % </paragraph>
+
+    \vspace{\baselineskip}
+	% </experience examples>
+
+	\vspace{\baselineskip}
+
+	% <motivation>
+	% <paragraph>
+        motivation par% paragraph
+	% </paragraph>
+
+    \vspace{\baselineskip}
+	% </motivation>
+
+    \vspace{\baselineskip}
+
+	% <salary expectation>
+	    salary par% salary expectation
+
+	    \vspace{2\baselineskip}
+	% </salary expectation>
+
+	% <close>
+        close% close
+
+	\vspace{\baselineskip}
+	% </close>
+	
+	% <salutation>
+	    salutation% salutation
+    % </salutation>
+
+    % </body>
+
+\end{document}

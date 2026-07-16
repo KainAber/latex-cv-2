@@ -2,7 +2,9 @@
 
 %Basics
 
-\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,xcolor,tikz,graphicx,calc}
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{amssymb,mathtools,enumitem,enumerate,hyperref,tikz,graphicx,calc, xcolor}
+\usepackage[normalem]{ulem}
 
 %Language and fonts
 
@@ -49,7 +51,7 @@
 % Define the default multiplier
 \newcommand{\multiplier}{4}
 
-% Define the macro
+% Define the skill scale
 \newcommand{\symbolscale}[1]{%
     \pgfmathsetmacro{\value}{round(#1 * \multiplier)}% Multiply by the multiplier and round to nearest integer
     \pgfmathtruncatemacro{\valueint}{\value}% Truncate to ensure an integer
@@ -65,6 +67,14 @@
         \advance\counter by 1 % Increment counter
     \ifnum\counter<\numexpr\multiplier+1\relax
     \repeat
+}
+
+% Define the diff text highlights
+\newcommand{\removetext}[1]{%
+    \textcolor{BrickRed}{\sout{#1}}%
+}
+\newcommand{\addtext}[1]{%
+    \textcolor{Green}{\textbf{#1}}%
 }
 
 %geometry
@@ -198,7 +208,7 @@
 	}}
 	\nopagebreak[4]
 
-	\
+	\vspace{1em}
 
 	% </title>
 	% <contents>
@@ -244,7 +254,7 @@
 		\\
 		&%
 		\vspace{-0.5em}
-		\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=0pt]
+		\begin{itemize}[topsep=0pt, partopsep=0pt, parsep=0pt, itemsep=4pt]
 		% <description items>
 		% <item>
 		\item%
@@ -259,7 +269,7 @@
 	\end{tabular}
 	% </contents>
 
-	\vspace{1em}
+	%\vspace{1em}
 
 	% </vita section>
 	% </vita>
@@ -278,7 +288,7 @@
 	% </title>
 	% <contents>
 	\nopagebreak[4]
-	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}l}
+	\begin{tabular}{>{\raggedleft\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{12cm}}
 		% <quality section>
 		\textcolor{accent}{%
 		% <section name>
@@ -291,8 +301,8 @@
 		\symbolscale{%
 			0.5% level
 		}%
-		% </level>
 		\ \
+		% </level>
 		% <quality>
 			quality% quality
 		% </quality>

@@ -78,7 +78,7 @@ language: english
 │   └── latex_cv.py             # Python module which provides template transformations
 ├── output                    # default output folder
 ├── main.py                   # entry point to the python program flow
-├── config.yaml               # configuration file for input and output folders
+├── config.yaml               # (to be created by user) configuration file for input and output folders
 ├── README.md                 # read-me file
 └── requirements.txt          # requirements for running and developing the code
 ```
@@ -96,9 +96,14 @@ If the above programs are installed, follow these steps:
     ```
 3. Navigate inside the repository and set up the environment
     ```shell
-    cd latex-cv
+    cd latex-cv-2
     uv sync
     ```
+3. Create a `config.yml` file with the following contents
+    ```yml
+   input_folder: 'input'
+   output_folder: 'output'
+   ```
 4. Run `main.py`
     ```shell
     uv run python -m src.latex_cv.main
@@ -112,7 +117,7 @@ To create your own CV, simply create a `.yaml` file inside `input` which mimics 
 
 ## Customizations
 
-In order to not have to work inside the repository folder, the file `config.yaml` affords the capability to change the the input folder (which is used to select the CV contents `.yaml` file) and the output folder (used for exporting `.tex` and `.pdf` files).
+In order to not have to work inside the repository folder, use the `config.yaml` to change the the input folder (which is used to select the CV contents `.yaml` file) and the output folder (used for exporting `.tex` and `.pdf` files).
 
 If you additionally create an alias in your shell configuration for the execution of `main.py`, you can essentially use this repository from anywhere inside your system.`
 

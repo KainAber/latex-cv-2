@@ -1,77 +1,64 @@
-import re
+from pathlib import Path
+
+import yaml
+
+from .io import (
+    compile_tex_and_clean_up,
+    create_img_folder,
+    get_latest_file,
+    read_template,
+    save_icons,
+    update_and_save_photo,
+    open_pdf
+)
+from .fill import clean_unused_tags, fill_template
 
 
-def fill_template(config: list | dict, template: str) -> str:
-    # Check if we have a list and need to duplicate the template
-    if isinstance(config, list):
-        # Call function on template for each item
-        fills_list = [fill_template(x, template) for x in config]
+def run_latex_yaml(input_folder_path: Path = None, config_path: Path = None, output_folder_path: Path = None) -> None:
+    if not input_folder_path and not config_path:
+        raise ValueError("Either input_folder_path or config_path must be provided")
 
-        # Concatenate all results
-        concat_str = "".join(fills_list)
+    if input_folder_path:
+        if not output_folder_path:
+            output_folder_path = input_folder_path
 
-        # Return concatenated string
-        return concat_str
+        config_path_from_input_folder = get_latest_file(input_folder_path, ext=".yml")
 
-    # Check if we have a dictionary and can apply all replacements
-    if isinstance(config, dict):
-        # Call function for each key-value pair on the same string
-        for k, v in config.items():
-            # Define pattern for splitting the template at tags
-            pattern = rf"(.*?)^[ \t]*% <{k}>\n(.*?)^[ \t]*% </{k}>\n(.*)"
+        run_latex_yaml_from_cfg(config_path_from_input_folder, output_folder_path)
 
-            # Match pattern on the template
-            template_match = re.match(pattern, template, re.MULTILINE | re.DOTALL)
+    if config_path:
+        if not output_folder_path:
+            output_folder_path = config_path.parent
 
-            # Continue if no match
-            if not template_match:
-                continue
-
-            # Get split results
-            template_before, template_middle, template_after = template_match.groups()
-
-            if not isinstance(v, dict) and not isinstance(v, list):
-                # Fill value
-                pattern = rf"(.*^\s*)(.*?)(\% {k}$.*)"
-
-                # Match pattern on the template
-                template_middle_match = re.match(
-                    pattern, template_middle, re.MULTILINE | re.DOTALL
-                )
-
-                # Continue if no match
-                if not template_middle_match:
-                    continue
-
-                # Get split results
-                (
-                    template_middle_before,
-                    template_middle_middle,
-                    template_middle_after,
-                ) = template_middle_match.groups()
-
-                # Replace middle
-                template_middle = (
-                    template_middle_before + str(v).strip("\n") + template_middle_after
-                )
-
-            else:
-                # Filled middle
-                template_middle = fill_template(v, template_middle)
-
-            # Joined
-            template = template_before + template_middle + template_after
-
-        # Return
-        return template
+        run_latex_yaml_from_cfg(config_path, output_folder_path)
 
 
-def clean_unused_tags(template: str) -> str:
-    # Define pattern for tags
-    pattern = r"^[ \t]*?\% <([^>]+)>.*?[ \t]*?\% </\1>\n"
+def run_latex_yaml_from_cfg(cfg_path: Path, output_folder_path: Path) -> None:
+    with open(cfg_path, "r") as f:
+        cfg = yaml.safe_load(f)
 
-    # Replace with an empty string
-    template_new = re.sub(pattern, "", template, flags=re.MULTILINE | re.DOTALL)
+    create_img_folder(output_folder_path)
 
-    # Return
-    return template_new
+    cfg = update_and_save_photo(cfg, cfg_path.parent, output_folder_path)
+
+    icons_color = cfg.get("colors", dict({})).get("accent", "")
+
+    if icons_color:
+        save_icons(output_folder_path, icons_color)
+
+    template_path = cfg["template"]
+
+    template = read_template(template_path)
+
+    template_filled = fill_template(cfg, template)
+
+    template_filled_clean = clean_unused_tags(template_filled)
+
+    cv_output_path = output_folder_path / (cfg_path.stem + ".tex")
+
+    with open(cv_output_path, "w") as f:
+        f.write(template_filled_clean)
+
+    compile_tex_and_clean_up(cv_output_path)
+
+    open_pdf(cv_output_path)

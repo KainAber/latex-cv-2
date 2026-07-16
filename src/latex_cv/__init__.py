@@ -1,3 +1,3 @@
-from .main import run_latex_cv_from_cfg
+from .latex_cv import run_latex_yaml
 
-__all__ = ["run_latex_cv_from_cfg"]
+__all__ = ["run_latex_yaml"]
